@@ -1,25 +1,28 @@
 @startuml
 
-
-!define RR(id, title) rectangle "==title" <<RR>> as id
-!define RR(id, title, descr) rectangle "==title\n\n descr" <<RR>> as id
-
-!function RR_($id, $title) 
-rectangle "$title" <<RR>> as $id 
+!function $Requirement($sterotype, $block, $id, $title, $descr="") 
+rectangle "[$block]$title\n\n $descr" <<$sterotype>> as $id 
 !endfunction
 
+!function RR($id, $title, $descr="") 
+$Requirement("RR", "Sys", $id, $title, $descr)
+!endfunction
 
-!define IR(id, title) rectangle "==title" <<IR>> as id
-!define IR(id, title, descr) rectangle "==title\n\n descr" <<IR>> as id
+!function IR($id, $title, $descr="") 
+$Requirement("IR", "Sys", $id, $title, $descr)
+!endfunction
 
-!define SF(id, title) rectangle "==title" <<SF>> as id
-!define SF(id, title, descr) rectangle "==title\n\n descr" <<SF>> as id
+!function SF($id, $title, $descr="") 
+$Requirement("SF", "Sys", $id, $title, $descr)
+!endfunction
 
-!define SR(id, title) rectangle "==title" <<SR>> as id
-!define SR(id, title, descr) rectangle "==title\n\n descr" <<SR>> as id
+!function SR($id, $title, $descr="") 
+$Requirement("SR", "Sys", $id, $title, $descr)
+!endfunction
 
-!define AR(id, bb, title) rectangle "==[bb]title" <<AR>> as id
-!define AR(id, bb, title, descr) rectangle "==[bb]: title\n\n descr" <<AR>> as id
+!function AR($id, $bb, $title, $descr="") 
+$Requirement("AR", $bb, $id, $title, $descr)
+!endfunction
 
 
 ' Relationships
@@ -30,9 +33,6 @@ rectangle "$title" <<RR>> as $id
 !define Rel(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-->")
 !define Rel(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-->")
 
-!define Trace(from, to) Rel_(from, to, "tracedTo", "..>")
-
-
 !function $rel($from, $to, $label, $direction="")
 $from $direction $to : "$label"
 !endfunction
@@ -41,8 +41,28 @@ $from $direction $to : "$label"
 $rel($from, $to, "dependency", "..>")
 !endfunction
 
-!function TraceF($from, $to) 
+!define Dep(from, to) $dependency(from, to)
+
+!function Trace($from, $to) 
 $rel($from, $to, "tracedTo", "..>")
+!endfunction
+
+!function TraceLine($req1, $req2, $req3) 
+Trace($req1, $req2)
+Trace($req2, $req3)
+!endfunction
+
+!function TraceLine($req1, $req2, $req3, $req4) 
+Trace($req1, $req2)
+Trace($req2, $req3)
+Trace($req3, $req4)
+!endfunction
+
+!function TraceLine($req1, $req2, $req3, $req4, $req5) 
+Trace($req1, $req2)
+Trace($req2, $req3)
+Trace($req3, $req4)
+Trace($req4, $req5)
 !endfunction
 
 @enduml

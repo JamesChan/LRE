@@ -1,0 +1,35 @@
+@startuml
+!include ../requirement.puml
+
+RR("RR1", "RR1")
+RR("RR2", "RR2")
+RR("RR3", "RR3", "需求描述3")
+RR("RR4", "RR4")
+
+IR("IR1", "IR1", "dkjsfgjs")
+IR("IR2", "IR2")
+IR("IR3", "IR3")
+
+SF("SF1", "SF1")
+SF("SF2", "SF2", "dfhhtrtyjtyjigjiofg")
+
+SR("SR1", "jdfkgj", "njkfg")
+SR("SR2", "jdfkgjnvbmvb", "nerrhjkfg")
+SR("SR3", "SR3")
+
+AR("AR1.1", "ModuleA", "AR1.1")
+AR("AR1.11", "ModuleB", "AR1.11", "fdkgs")
+
+Trace("RR1", "IR1")
+Trace("RR3", "IR1")
+
+Dep("RR4", "RR1")
+Dep("AR1.1", "AR1.11")
+
+Trace("SR1", "AR1.1")
+
+TraceLine("IR1", "SF1", "SR1")
+TraceLine("IR2", "SF2", "SR2")
+TraceLine("IR3", "SF1", "SR2", "AR1.11")
+TraceLine("RR2", "IR1", "SF2", "SR3", "AR1.1")
+@enduml
