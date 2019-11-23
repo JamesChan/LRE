@@ -1,0 +1,48 @@
+@startuml
+
+
+!define RR(id, title) rectangle "==title" <<RR>> as id
+!define RR(id, title, descr) rectangle "==title\n\n descr" <<RR>> as id
+
+!function RR_($id, $title) 
+rectangle "$title" <<RR>> as $id 
+!endfunction
+
+
+!define IR(id, title) rectangle "==title" <<IR>> as id
+!define IR(id, title, descr) rectangle "==title\n\n descr" <<IR>> as id
+
+!define SF(id, title) rectangle "==title" <<SF>> as id
+!define SF(id, title, descr) rectangle "==title\n\n descr" <<SF>> as id
+
+!define SR(id, title) rectangle "==title" <<SR>> as id
+!define SR(id, title, descr) rectangle "==title\n\n descr" <<SR>> as id
+
+!define AR(id, bb, title) rectangle "==[bb]title" <<AR>> as id
+!define AR(id, bb, title, descr) rectangle "==[bb]: title\n\n descr" <<AR>> as id
+
+
+' Relationships
+
+!define Rel_(e_alias1, e_alias2, e_label, e_direction="") e_alias1 e_direction e_alias2 : "===e_label"
+!define Rel_(e_alias1, e_alias2, e_label, e_techn, e_direction="") e_alias1 e_direction e_alias2 : "===e_label\n//<size:TECHN_FONT_SIZE>[e_techn]</size>//"
+
+!define Rel(e_from,e_to, e_label) Rel_(e_from,e_to, e_label, "-->")
+!define Rel(e_from,e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "-->")
+
+!define Trace(from, to) Rel_(from, to, "tracedTo", "..>")
+
+
+!function $rel($from, $to, $label, $direction="")
+$from $direction $to : "$label"
+!endfunction
+
+!function $dependency($from, $to)
+$rel($from, $to, "dependency", "..>")
+!endfunction
+
+!function TraceF($from, $to) 
+$rel($from, $to, "tracedTo", "..>")
+!endfunction
+
+@enduml
