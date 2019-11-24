@@ -1,7 +1,7 @@
 @startuml
 
 !function $Requirement($sterotype, $block, $id, $title, $descr="") 
-rectangle "[$block]$title\n\n $descr" <<$sterotype>> as $id 
+rectangle "[$block] $title\n\n $descr" <<$sterotype>> as $id 
 !endfunction
 
 !function RR($id, $title, $descr="") 

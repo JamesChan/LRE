@@ -1,9 +1,10 @@
 @startuml
 !include ../requirement.puml
+left to right direction
 
-RR("RR1", "RR1")
 RR("RR2", "RR2")
 RR("RR3", "RR3", "需求描述3")
+RR("RR1", "RR1")
 RR("RR4", "RR4")
 
 IR("IR1", "IR1", "dkjsfgjs")
@@ -27,6 +28,7 @@ Dep("RR4", "RR1")
 Dep("AR1.1", "AR1.11")
 
 Trace("SR1", "AR1.1")
+Trace("RR4", "IR2")
 
 TraceLine("IR1", "SF1", "SR1")
 TraceLine("IR2", "SF2", "SR2")
